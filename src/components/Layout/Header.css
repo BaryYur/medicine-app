@@ -1,0 +1,89 @@
+header {
+    padding: 15px 0;
+    background-color: white;
+    /*position: fixed;*/
+    /*width: 100%;*/
+    /*z-index: 10;*/
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+header .logo-box a {
+    font-size: 23px;
+    font-weight: 700;
+    color: #50C878;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+header .logo-box a span {
+    margin-left: 4px;
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+}
+
+header ul li:first-child a {
+    color: #43e843;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+header ul li:last-child {
+    margin-left: 15px;
+}
+
+header ul li:last-child button {
+    position: relative;
+}
+
+header ul li:last-child button:hover {
+    background-color: white;
+}
+
+header ul li:last-child button:before {
+    content: attr(data-count);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    padding: 0 3px;
+    font-weight: bold;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: #464646;
+    color: white;
+    min-width: 10px;
+    min-height: 10px;
+    font-size: 10px;
+}
+
+
+header ul li:last-child .not-active-counter:before {
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    header {
+        padding: 15px;
+    }
+
+    .header-container {
+        width: 100%;
+    }
+}

@@ -1,0 +1,5 @@
+.main-wrapper__category-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

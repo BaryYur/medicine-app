@@ -1,0 +1,101 @@
+.cart-items-container li .cart-item-box {
+    display: flex;
+}
+
+.cart-items-container li a img {
+    width: 65px;
+    height: 95px;
+    background-color: #a6a6a6;
+    margin-right: 8px;
+}
+
+.price-and-delete-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.price-box {
+    display: flex;
+    align-items: center;
+}
+
+.price-box div {
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price-box div span {
+    color: cadetblue;
+}
+
+.price-box button {
+    padding: 5px;
+    border: 1px solid  cadetblue;;
+    background-color: white;
+    color: cadetblue;;
+    font-size: 20px;
+    padding: 0;
+    box-shadow: none;
+    padding:4px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.price-box button:hover {
+    background-color: cadetblue;
+    color: white;
+}
+
+.price-box .price-box__delete-btn {
+    color: grey;
+    border: 1px solid;
+    margin-left: 10px;
+    padding: 3px 7px;
+    border-radius: 4px;
+}
+
+.price-box .price-box__delete-btn:hover {
+    color: indianred;
+    border: 1px solid indianred;
+    background-color: white;
+}
+
+.delete-cart-item-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-cart-item-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-cart-item-box button {
+    padding: 3px 5px;
+    background-color: indianred;
+    font-size: 12px;
+}
+
+.order-cart-item-box button:hover {
+    background-color: #b23c3c;
+}
+
+.delete-cart-item-box button {
+    color: indianred;
+    border: 1px solid indianred;
+}
+
+.delete-cart-item-box button:hover {
+    background-color: rgba(205, 92, 92, 0.07);
+}
+
+.price-and-delete-container .order-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.price-and-delete-container a {
+    width: 65px;
+}

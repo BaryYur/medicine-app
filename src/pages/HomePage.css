@@ -1,0 +1,42 @@
+.hero-wrapper {
+    background-color: white;
+}
+
+.hero-container {
+    min-height: 300px;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.hero-container h1 {
+    text-align: center;
+    color: #464646;
+}
+
+.categories-cards-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+    .hero-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .categories-cards-container {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .categories-cards-container {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}

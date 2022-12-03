@@ -1,0 +1,43 @@
+.main-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.user-page-info-container {
+    width: 700px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    min-height: 500px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-page-info-container .user-info-box {
+    color: #464646;
+}
+
+.user-page-info-container h3 {
+    margin-top: 10px;
+}
+
+.user-page-info-container .logout-btn-box {
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 1200px) {
+    .main-wrapper {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .user-page-info-container {
+        width: 100%;
+    }
+}

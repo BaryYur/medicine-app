@@ -1,0 +1,18 @@
+.searching-page-head h2 span:first-child {
+    color: lightslategray;
+    line-height: 40px;
+}
+
+.searching-items-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searching-items-container .list-of-medicine-items-container ul {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.searching-main-wrapper .no-items-paragraph {
+    margin-top: -150px;
+}
