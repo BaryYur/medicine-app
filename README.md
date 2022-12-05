@@ -1,1 +1,1 @@
-You can open this app: 
+medicine-app
