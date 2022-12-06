@@ -43,7 +43,7 @@ const CategoriesMenu = () => {
                 style={{ marginTop: "5px" }}
             >
                 <MenuItem style={{ width: "124px" }} onClick={handleClose}>
-                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/pills">Pills</Link>
+                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/pill">Pills</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/tincture">Tincture</Link>

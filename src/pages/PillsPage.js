@@ -16,9 +16,9 @@ const PillsPage = () => {
             <div className="main-wrapper__category-container">
                 <div className="filtering-container">
                     <h3>Shop names:</h3>
-                    <FilteringItem name="all" category="pill" id={Math.random()}  />
+                    <FilteringItem name="All" category="pill" id={Math.random()}  />
                     {!medicineCtx.filteringLoading ?
-                        <FilteringList filteringData={medicineCtx.pillsFilteringNames} category="pills"/>:
+                        <FilteringList filteringData={medicineCtx.pillsFilteringNames} category="pill"/>:
                         <p>Loading...</p>
                     }
                 </div>

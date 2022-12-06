@@ -17,7 +17,7 @@ const TincturePage = () => {
             <div className="main-wrapper__category-container">
                 <div className="filtering-container">
                     <h3>Shop names:</h3>
-                    <FilteringItem name="all" category="tincture" id={Math.random()}  />
+                    <FilteringItem name="All" category="tincture" id={Math.random()}  />
                     {!medicineCtx.filteringLoading ?
                         <FilteringList filteringData={medicineCtx.tinctureFilteringNames} category="tincture"/>:
                         <p>Loading...</p>

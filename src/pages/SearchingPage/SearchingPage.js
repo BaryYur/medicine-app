@@ -18,7 +18,7 @@ const SearchingPage = () => {
     const [searchingCross, setSearchingCross] = useState(false);
     const searchingText = JSON.parse(localStorage.getItem("search")) || "";
     //
-    const filteringData = ["pills", "solution", "tincture", "gel"];
+    const filteringData = ["pill", "solution", "tincture", "gel"];
 
     const clearSearchingInputHandler = () => {
         setNewSearchingInput("");
@@ -87,12 +87,13 @@ const SearchingPage = () => {
                 <div className="filtering-container">
                     <h3>Categories:</h3>
                     <ul>
-                        <FilteringSearchingItem id={Math.random()} name="all" />
+                        <FilteringSearchingItem id={Math.random()} category="all" name={newSearchingInput} />
                         {filteringData.map(filteringName => (
                             <FilteringSearchingItem
                                 key={Math.random()}
                                 id={Math.random()}
-                                name={filteringName}
+                                category={filteringName}
+                                name={newSearchingInput}
                             />
                         ))}
                     </ul>

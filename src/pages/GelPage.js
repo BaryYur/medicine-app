@@ -18,7 +18,7 @@ const GelPage = () => {
             <div className="main-wrapper__category-container">
                 <div className="filtering-container">
                     <h3>Shop names:</h3>
-                    <FilteringItem name="all" category="gel" id={Math.random()}  />
+                    <FilteringItem name="All" category="gel" id={Math.random()}  />
                     {!medicineCtx.filteringLoading ?
                         <FilteringList filteringData={medicineCtx.gelFilteringNames} category="gel"/>:
                         <p>Loading...</p>

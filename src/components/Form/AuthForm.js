@@ -33,13 +33,13 @@ const AuthForm = () => {
         let body;
 
         if (isLogin) {
-            url = "https://aptekaapi.herokuapp.com/user/login";
+            url = "https://api-apteka.herokuapp.com/user/login";
             body = {
                 email: enteredEmail,
                 password: enteredPassword,
             }
         } else {
-            url = "https://aptekaapi.herokuapp.com/user/register";
+            url = "https://api-apteka.herokuapp.com/user/register";
             body = {
                 firstName: nameInputRef.current.value,
                 lastName: lastNameInputRef.current.value,

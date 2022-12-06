@@ -3,10 +3,12 @@
 }
 
 .cart-items-container li a img {
-    width: 65px;
-    height: 95px;
+    width: 95px;
+    height: 75px;
     background-color: #a6a6a6;
     margin-right: 8px;
+    border: 1px solid grey;
+    border-radius: 4px;
 }
 
 .price-and-delete-container {

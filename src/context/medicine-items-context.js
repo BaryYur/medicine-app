@@ -24,7 +24,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
     const [filteringLoading, setFilteringLoading] = useState(false);
 
     const addToCartHandler = (id, category) => {
-        if (category === "PILLS") {
+        if (category === "PILL") {
             addNeededItemToCart(id, pillsItems);
         } else if (category === "TINCTURE") {
             addNeededItemToCart(id, tinctureItems);
@@ -49,7 +49,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
         setLoading(true);
 
         if (localStorage.getItem("token")) {
-            fetch(`https://aptekaapi.herokuapp.com/${category}`, {
+            fetch(`https://api-apteka.herokuapp.com/${category}`, {
                 method: "GET",
                 headers: {
                     Authorization: localStorage.getItem("token"),
@@ -83,7 +83,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
         setLoading(true);
 
         if (localStorage.getItem("token")) {
-            fetch(`https://aptekaapi.herokuapp.com/search/${word}`, {
+            fetch(`https://api-apteka.herokuapp.com/search/${word}`, {
                 method: "GET",
                 headers: {
                     Authorization: localStorage.getItem("token"),
@@ -102,31 +102,48 @@ export const MedicineItemsContextProvider = ({ children }) => {
     }
 
     const fetchingSearchingFiltering = (category, name) => {
-        // setLoading(true);
-        //
-        // fetch(`https://aptekaapi.herokuapp.com/${category}/filter/${name}`, {
-        //     method: "GET",
-        //     headers: {
-        //         Authorization: localStorage.getItem("token"),
-        //     }
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setSearchingItems(data);
-        //         setLoading(false);
-        //     })
-        //     .catch(error => {
-        //         // alert(error);
-        //         setLoading(false);
-        //     })
-        console.log('filtering')
+        setLoading(true);
+
+        if (name !== "all") {
+            fetch(`https://api-apteka.herokuapp.com/${category}/byName/${name}`, {
+                method: "GET",
+                headers: {
+                    Authorization: localStorage.getItem("token"),
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setSearchingItems(data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    // alert(error);
+                    setLoading(false);
+                })
+        } else {
+            fetch(`https://api-apteka.herokuapp.com/search/${name}`, {
+                method: "GET",
+                headers: {
+                    Authorization: localStorage.getItem("token"),
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setSearchingItems(data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    // alert(error);
+                    setLoading(false);
+                })
+        }
     }
 
     const fetchingCategoryFilteringNames = (category) => {
         setFilteringLoading(true);
 
         if (localStorage.getItem("token")) {
-            fetch(`https://aptekaapi.herokuapp.com/${category}/allGoods`, {
+            fetch(`https://api-apteka.herokuapp.com/${category}/allGoods`, {
                 method: "GET",
                 headers: {
                     Authorization: localStorage.getItem("token"),
@@ -155,7 +172,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
     const fetchingCategoryFiltering = (category, name) => {
         setLoading(true);
 
-        if (name === "all") {
+        if (name === "All") {
             fetchingCategoryData(category);
         } else {
             fetch(`https://aptekaapi.herokuapp.com/${category}/byAllGoods/${name}`, {
@@ -178,31 +195,44 @@ export const MedicineItemsContextProvider = ({ children }) => {
 
                     setLoading(false);
                 })
+                .catch(error => {
+                    if (category === "pill") {
+                        setPillsItems([]);
+                    } else if (category === "tincture") {
+                        setTinctureItems([]);
+                    } else if (category === "solution") {
+                        setMixtureItems([]);
+                    } else if (category === "gel") {
+                        setGelItems([]);
+                    }
+
+                    setLoading(false);
+                })
         }
     }
 
     const filteringCategoryItems = JSON.parse(localStorage.getItem("filteringCategory"));
 
     const effectData = () => {
-        if (filteringCategoryItems[0].filteringName === "all") {
+        if (filteringCategoryItems[0].filteringName === "All") {
             fetchingCategoryData("pill");
         } else {
             fetchingCategoryFiltering("pill", filteringCategoryItems[0].filteringName);
         }
 
-        if (filteringCategoryItems[1].filteringName === "all") {
+        if (filteringCategoryItems[1].filteringName === "All") {
             fetchingCategoryData("tincture");
         } else {
             fetchingCategoryFiltering("tincture", filteringCategoryItems[1].filteringName);
         }
 
-        if (filteringCategoryItems[2].filteringName === "all") {
+        if (filteringCategoryItems[2].filteringName === "All") {
             fetchingCategoryData("solution");
         } else {
             fetchingCategoryFiltering("solution", filteringCategoryItems[2].filteringName);
         }
 
-        if (filteringCategoryItems[3].filteringName === "all") {
+        if (filteringCategoryItems[3].filteringName === "All") {
             fetchingCategoryData("gel");
         } else {
             fetchingCategoryFiltering("gel", filteringCategoryItems[3].filteringName);

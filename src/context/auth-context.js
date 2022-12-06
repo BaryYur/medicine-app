@@ -76,7 +76,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
 
     const fetchingUserData = (id) => {
-        fetch(`https://aptekaapi.herokuapp.com/user/${id}`, {
+        fetch(`https://api-apteka.herokuapp.com/user/${id}`, {
             method: "GET",
             headers: {
                 Authorization: localStorage.getItem("token"),
@@ -119,20 +119,20 @@ export const AuthContextProvider = ({ children }) => {
         if (!localStorage.getItem("token") || !localStorage.getItem("filteringCategory")) {
             localStorage.setItem("filteringCategory", JSON.stringify([
                 {
-                    category: "pills",
-                    filteringName: "all",
+                    category: "pill",
+                    filteringName: "All",
                 },
                 {
                     category: "tincture",
-                    filteringName: "all",
+                    filteringName: "All",
                 },
                 {
                     category: "solution",
-                    filteringName: "all",
+                    filteringName: "All",
                 },
                 {
                     category: "gel",
-                    filteringName: "all",
+                    filteringName: "All",
                 },
             ]));
         }

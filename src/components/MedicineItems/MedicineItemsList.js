@@ -12,7 +12,7 @@ const MedicineItemsList = ({ data }) => {
                             id={medicineItem.id}
                             title={medicineItem.name}
                             price={medicineItem.price}
-                            // img={medicineItem.img}
+                            img={medicineItem.file}
                             link={`/${medicineItem.releaseForm.toLowerCase()}/${medicineItem.id}`}
                             category={medicineItem.releaseForm}
                         />

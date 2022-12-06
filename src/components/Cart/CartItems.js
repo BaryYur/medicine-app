@@ -20,6 +20,7 @@ const CartItems = () => {
                       name={cartItem.name}
                       price={cartItem.price}
                       quantity={cartItem.quantity}
+                      img={cartItem.file}
                   />
               ))}
           </ul>

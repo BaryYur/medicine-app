@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 
-const FilteringSearchingItem = ({ name, id }) => {
+import MedicineItemsContext from "../../context/medicine-items-context";
+
+const FilteringSearchingItem = ({ name, id, category }) => {
+    const medicineCtx = useContext(MedicineItemsContext);
     let localSearchingFiltering = JSON.parse(localStorage.getItem("filteringSearching"));
     const [checkedSearchingRadio, setCheckedSearchingRadio] = useState(false);
 
-    const filterSearchingCategoryHandler = (name) => {
+    const filterSearchingCategoryHandler = (category) => {
         setCheckedSearchingRadio(true);
-        localStorage.setItem("filteringSearching", JSON.stringify(name));
+        localStorage.setItem("filteringSearching", JSON.stringify(category));
+
+        if (localSearchingFiltering === category) {
+            setCheckedSearchingRadio(true);
+        }
+
+        medicineCtx.fetchingSearchingFiltering(category, name);
     }
 
     useEffect(() => {
@@ -14,7 +23,7 @@ const FilteringSearchingItem = ({ name, id }) => {
             localStorage.setItem("filteringSearching", JSON.stringify("all"));
         }
 
-        if (localSearchingFiltering === name) {
+        if (localSearchingFiltering === category) {
             setCheckedSearchingRadio(true);
         }
     }, [])
@@ -28,13 +37,13 @@ const FilteringSearchingItem = ({ name, id }) => {
                 name="radio-filtering-searching-btn"
                 checked={checkedSearchingRadio}
                 onChange={() => {
-                    if (localSearchingFiltering === name) {
+                    if (localSearchingFiltering === category) {
                         setCheckedSearchingRadio(true);
                     }
                 }}
-                onClick={() => filterSearchingCategoryHandler(name)}
+                onClick={() => filterSearchingCategoryHandler(category, name)}
             />
-            <label htmlFor={`${id}-radio`}>{name}</label>
+            <label htmlFor={`${id}-radio`}>{category}</label>
         </li>
     );
 }

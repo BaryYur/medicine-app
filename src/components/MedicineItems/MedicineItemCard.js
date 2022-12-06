@@ -36,7 +36,7 @@ const MedicineItemCard = ({ title, img, price, id, link, category }) => {
         >
             <Link to={link}>
                 <div className="medicine-card__head">
-                    <img src={img} alt={title} />
+                    <img src={"data:image/png;base64," + img} alt={title} />
                     <p>{title}</p>
                 </div>
             </Link>
@@ -48,6 +48,7 @@ const MedicineItemCard = ({ title, img, price, id, link, category }) => {
                 <Button
                     variant="contained"
                     disabled={activeAddingBtn}
+                    className="adding-to-cart-btn"
                     onClick={() => {
                         medicineCtx.addToCart(id, category);
                         setActiveAddingBtn(true);

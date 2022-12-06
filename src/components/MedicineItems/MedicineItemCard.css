@@ -51,14 +51,14 @@
     font-weight: 600;
 }
 
-.medicine-card__bottom button {
+.medicine-card__bottom .adding-to-cart-btn {
     padding: 5px 0;
     background-color: darkseagreen;
 }
 
-.medicine-card__bottom button:disabled,
-.medicine-card__bottom button:disabled:hover,
-.medicine-card__bottom button:disabled:active {
+.medicine-card__bottom .adding-to-cart-btn:disabled,
+.medicine-card__bottom .adding-to-cart-btn:disabled:hover,
+.medicine-card__bottom .adding-to-cart-btn:disabled:active {
     background-color: #ccc;
     color: white;
     border-color: #ccc;
@@ -66,7 +66,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-.medicine-card__bottom button:hover {
+.medicine-card__bottom .adding-to-cart-btn:hover {
     background-color: #76a976;
 }
 

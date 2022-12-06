@@ -25,7 +25,7 @@ const App = () => {
                 {authCtx.isLoggedIn && <Route path="/" exact element={<HomePage />} />}
                 {authCtx.isLoggedIn && <Route path="/home" element={<HomePage />} />}
                 {authCtx.isLoggedIn && <Route path="/profile" element={<UserPage />} />}
-                {authCtx.isLoggedIn && <Route path="/pills" element={<PillsPage />} />}
+                {authCtx.isLoggedIn && <Route path="/pill" element={<PillsPage />} />}
                 {authCtx.isLoggedIn && <Route path="/tincture" element={<TincturePage />} />}
                 {authCtx.isLoggedIn && <Route path="/mixture" element={<MixturePage />} />}
                 {authCtx.isLoggedIn && <Route path="/gel" element={<GelPage />} />}

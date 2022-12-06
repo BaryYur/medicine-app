@@ -8,6 +8,16 @@ const FilteringItem = ({name, id, category}) => {
     const medicineCtx = useContext(MedicineItemsContext);
     const [checkedRadio, setCheckedRadio] = useState(false);
 
+    const checkingHandler = () => {
+        let filtering = JSON.parse(localStorage.getItem("filteringCategory"));
+
+        for (let item of filtering) {
+            if (item.filteringName === name && item.category === category) {
+                setCheckedRadio(true);
+            }
+        }
+    }
+
     const filterCategoryHandler = (name) => {
         setCheckedRadio(true);
         let filtering = JSON.parse(localStorage.getItem("filteringCategory"));
@@ -21,16 +31,11 @@ const FilteringItem = ({name, id, category}) => {
         }
 
         medicineCtx.fetchingCategoryFiltering(category, name);
+        checkingHandler();
     }
 
     useEffect(() => {
-        let filtering = JSON.parse(localStorage.getItem("filteringCategory"));
-
-        for (let item of filtering) {
-            if (item.filteringName === name && item.category === category) {
-                setCheckedRadio(true);
-            }
-        }
+        checkingHandler();
     }, [])
 
     return (
@@ -41,15 +46,7 @@ const FilteringItem = ({name, id, category}) => {
                 style={{ color: "#50C878", }}
                 name="radio-filtering-category-btn"
                 checked={checkedRadio}
-                onChange={() => {
-                    let filtering = JSON.parse(localStorage.getItem("filteringCategory"));
-
-                    for (let item of filtering) {
-                        if (item.filteringName === name && item.category === category) {
-                            setCheckedRadio(true);
-                        }
-                    }
-                }}
+                onChange={checkingHandler}
                 onClick={() => filterCategoryHandler(name)}
             />
             <label htmlFor={`${id}-radio`}>{name}</label>
