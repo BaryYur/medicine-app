@@ -1,7 +1,6 @@
 {
   "name": "medicine-app",
   "version": "0.1.0",
-  "homepage": "https://baryyur.github.io/medicine-app/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -15,15 +14,11 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "serve": "^14.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "heroku-postbuild": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
