@@ -175,7 +175,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
         if (name === "All") {
             fetchingCategoryData(category);
         } else {
-            fetch(`https://aptekaapi.herokuapp.com/${category}/byAllGoods/${name}`, {
+            fetch(`https://api-apteka.herokuapp.com/${category}/byAllGoods/${name}`, {
                 method: "GET",
                 headers: {
                     Authorization: localStorage.getItem("token"),
