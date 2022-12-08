@@ -1,0 +1,39 @@
+.adding-form-container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    min-height: 500px;
+    position: relative;
+}
+
+.adding-form-container ul {
+    display: flex;
+    padding: 20px 0;
+    width: 42%;
+    justify-content: space-between;
+}
+
+.adding-form-container ul li label {
+    padding: 5px 15px;
+    border: 1px solid #2d964f;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #2d964f;
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.adding-form-container ul li label:hover {
+    background-color: white;
+}
+
+.adding-form-container ul li input {
+    display: none;
+}
+
+.adding-form-container ul li input:checked + label {
+    background-color: #2d964f;
+    color: white;
+}
