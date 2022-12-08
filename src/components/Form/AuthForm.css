@@ -24,6 +24,7 @@
     border: 1px solid grey;
     border-radius: 3px;
     margin: 10px 0 15px 0;
+    background-color: whitesmoke;
 }
 
 .login-form-container form input:focus {

@@ -15,7 +15,7 @@ const MixturePage = () => {
             <h1>Mixture Page</h1>
             <div className="main-wrapper__category-container">
                 <div className="filtering-container">
-                    <h3>Shop names:</h3>
+                    <h3>Manufactures:</h3>
                     <FilteringItem name="All" category="solution" id={Math.random()}  />
                     {!medicineCtx.filteringLoading ?
                         <FilteringList filteringData={medicineCtx.mixtureFilteringNames} category="solution"/>:

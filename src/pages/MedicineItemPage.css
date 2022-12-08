@@ -23,6 +23,10 @@
     font-weight: 200;
 }
 
+.adding-container {
+    align-self: flex-end;
+}
+
 .medicine-item-page__main-info img {
     width: 200px;
     height: 170px;

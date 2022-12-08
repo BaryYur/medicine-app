@@ -6,6 +6,7 @@ const MedicineItemsContext = React.createContext({
     fetchingSearchingItems: (word) => {},
     fetchingSearchingFiltering: (category, name) => {},
     fetchingCategoryFiltering: (category, name) => {},
+    fetchingNewCategoryItem: (category, body) => {},
     effectData: () => {},
 });
 
@@ -211,6 +212,36 @@ export const MedicineItemsContextProvider = ({ children }) => {
         }
     }
 
+    const fetchingNewCategoryItem = (category, body) => {
+        setLoading(true);
+
+        fetch(`https://api-apteka.herokuapp.com/${category}`, {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                Authorization: localStorage.getItem("token"),
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return res.json().then((data) => {
+                        let errorMessage = "Adding failed!";
+
+                        throw new Error(errorMessage);
+                    });
+                }
+
+                setLoading(false);
+            })
+            .catch(error => {
+                alert("Something went wrong!");
+                setLoading(false);
+            })
+    }
+
     const filteringCategoryItems = JSON.parse(localStorage.getItem("filteringCategory"));
 
     const effectData = () => {
@@ -265,6 +296,7 @@ export const MedicineItemsContextProvider = ({ children }) => {
         fetchingSearchingItems: fetchingSearchingItems,
         fetchingSearchingFiltering: fetchingSearchingFiltering,
         fetchingCategoryFiltering: fetchingCategoryFiltering,
+        fetchingNewCategoryItem: fetchingNewCategoryItem,
         loading: loading,
         filteringLoading: filteringLoading,
         effectData: effectData,

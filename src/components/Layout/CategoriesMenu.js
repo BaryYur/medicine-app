@@ -42,18 +42,18 @@ const CategoriesMenu = () => {
                 MenuListProps={{ "aria-labelledby": "basic-button" }}
                 style={{ marginTop: "5px" }}
             >
-                <MenuItem style={{ width: "124px" }} onClick={handleClose}>
-                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/pill">Pills</Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/tincture">Tincture</Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/mixture">Mixture</Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Link style={{ color: "#464646", display: "block", width: "100%" }} to="/gel">Gel</Link>
-                </MenuItem>
+                <Link style={{ width: "140px", }} onClick={handleClose} to="/pill">
+                    <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Pills</MenuItem>
+                </Link>
+                <Link onClick={handleClose} to="/tincture">
+                    <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Tincture</MenuItem>
+                </Link>
+                <Link onClick={handleClose} to="/solution">
+                    <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Solution</MenuItem>
+                </Link>
+                <Link onClick={handleClose} to="/gel">
+                    <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Gel</MenuItem>
+                </Link>
             </Menu>
         </div>
     );

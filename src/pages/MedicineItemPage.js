@@ -53,7 +53,7 @@ const MedicineItemPage = () => {
                             <p>Price: <span>{chosenMedicineItem.price} hrn</span></p>
                         </div>
                     </div>
-                    <div>
+                    <div className="adding-container">
                         <Button
                             variant="contained"
                             disabled={activeAddingBtn}

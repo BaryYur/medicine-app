@@ -29,6 +29,12 @@ const AuthForm = () => {
         const enteredEmail = emailInputRef.current.value;
         const enteredPassword = passwordInputRef.current.value;
 
+        if (isLogin === true) {
+            if (enteredEmail === "" || enteredPassword === "") return;
+        } else {
+            if (enteredEmail === "" || enteredPassword === "" || nameInputRef.current.value === "" || lastNameInputRef.current.value === "") return;
+        }
+
         let url;
         let body;
 

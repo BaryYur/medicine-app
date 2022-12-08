@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import { Navigate, Route, Routes } from "react-router-dom";
+import AuthContext from "./context/auth-context";
 
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
@@ -13,8 +14,7 @@ import TincturePage from "./pages/TincurePage";
 import GelPage from "./pages/GelPage";
 import SearchingPage from "./pages/SearchingPage/SearchingPage";
 import MedicineItemPage from "./pages/MedicineItemPage";
-
-import AuthContext from "./context/auth-context";
+import AddingItemPage from "./pages/AddingPage/AddingItemPage";
 
 const App = () => {
     const authCtx = useContext(AuthContext);
@@ -30,6 +30,7 @@ const App = () => {
                 {authCtx.isLoggedIn && <Route path="/mixture" element={<MixturePage />} />}
                 {authCtx.isLoggedIn && <Route path="/gel" element={<GelPage />} />}
                 {authCtx.isLoggedIn && <Route path="/search" element={<SearchingPage />} />}
+                {authCtx.isLoggedIn && <Route path="/add-new" element={<AddingItemPage />} />}
                 {authCtx.isLoggedIn && <Route path="/:category/:id" element={<MedicineItemPage />} />}
                 {!authCtx.isLoggedIn && <Route path="/auth" element={<LoginPage />} />}
                 {!authCtx.isLoggedIn && <Route path="/" element={<Navigate to="/auth" replace />} />}

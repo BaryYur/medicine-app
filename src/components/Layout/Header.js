@@ -60,6 +60,9 @@ const Header = () => {
                 <div>
                     <ul>
                         <li>
+                            <Link to="/add-new" style={{ color: "#50C878" }}>Add new medicine item</Link>
+                        </li>
+                        <li>
                             <CategoriesMenu />
                         </li>
                         <li>
