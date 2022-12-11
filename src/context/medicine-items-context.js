@@ -212,32 +212,33 @@ export const MedicineItemsContextProvider = ({ children }) => {
         }
     }
 
-    const fetchingNewCategoryItem = (category, body) => {
+    const fetchingNewCategoryItem = (category, body, formData) => {
         setLoading(true);
 
         fetch(`https://api-apteka.herokuapp.com/${category}`, {
             method: "POST",
-            body: JSON.stringify(body),
+            body: formData,
             headers: {
+                "Content-Type": "multipart/form-data",
                 Authorization: localStorage.getItem("token"),
-                "Content-Type": "application/json",
             },
         })
             .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    return res.json().then((data) => {
-                        let errorMessage = "Adding failed!";
-
-                        throw new Error(errorMessage);
-                    });
-                }
+                // if (res.ok) {
+                //     return res.json();
+                // } else {
+                //     return res.json().then((data) => {
+                //         let errorMessage = "Adding failed!";
+                //
+                //         throw new Error(errorMessage);
+                //     });
+                // }
 
                 setLoading(false);
+                alert("You successful add new item!");
             })
             .catch(error => {
-                alert("Something went wrong!");
+                alert("Something went wrong! ", error);
                 setLoading(false);
             })
     }

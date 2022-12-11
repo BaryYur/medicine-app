@@ -21,6 +21,8 @@ const CartItems = () => {
                       price={cartItem.price}
                       quantity={cartItem.quantity}
                       img={cartItem.file}
+                      category={cartItem.releaseForm.toLowerCase()}
+                      producingCountry={cartItem.producingCountry}
                   />
               ))}
           </ul>

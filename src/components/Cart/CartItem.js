@@ -8,7 +8,7 @@ import { Button, Card } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./CartItem.css";
 
-const CartItem = ({ name, id, price, category, quantity, img}) => {
+const CartItem = ({ name, id, price, category, quantity, img, producingCountry}) => {
     const authCtx = useContext(AuthContext);
     const medicineCtx = useContext(MedicineItemsContext);
     const [totalPrice, setTotalPrice] = useState(price);
@@ -46,13 +46,13 @@ const CartItem = ({ name, id, price, category, quantity, img}) => {
                 }}
             >
                 <div className="cart-item-box">
-                    <Link to={`/${category}/${id}`} onClick={authCtx.closingCartHandler}>
+                    <Link onClick={authCtx.closingCartHandler} to={`/${category}/${id}`} onClick={authCtx.closingCartHandler}>
                         <img src={"data:image/png;base64," + img} alt={name} />
                     </Link>
                     <div>
-                        <Link to={`/${category}/${id}`}>{name}</Link>
-                        {/*<p>producingCountry: {producingCountry},</p>*/}
-                        {/*<p>releaseForm: {releaseForm} </p>*/}
+                        <Link onClick={authCtx.closingCartHandler} to={`/${category}/${id}`}>{name}</Link>
+                        <p>Producing country: {producingCountry},</p>
+                        <p>releaseForm: {category} </p>
                     </div>
                 </div>
                 <div className="price-and-delete-container">

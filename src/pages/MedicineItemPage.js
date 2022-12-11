@@ -34,7 +34,7 @@ const MedicineItemPage = () => {
 
     useEffect(() => {
         fetchingCategoryItems(categoryLocation, params.id);
-    }, [])
+    }, [params])
 
     return (
         <div className="main-wrapper">
@@ -53,7 +53,15 @@ const MedicineItemPage = () => {
                             <p>Price: <span>{chosenMedicineItem.price} hrn</span></p>
                         </div>
                     </div>
-                    <div className="adding-container">
+                    <div className="medicine-item-btns-container">
+                        <Button
+                            // variant="contained"
+                            // onClick={() => {
+                            //     medicineCtx.addToCart(chosenMedicineItem.id, categoryLocation.toUpperCase());
+                            // }}
+                        >
+
+                        </Button>
                         <Button
                             variant="contained"
                             disabled={activeAddingBtn}

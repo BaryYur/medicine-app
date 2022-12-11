@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import MedicineItemsContext from "../../context/medicine-items-context";
 
@@ -7,7 +7,7 @@ import "./AddingItemForm.css";
 const AddingItemForm = ({category}) => {
     const medicineCtx = useContext(MedicineItemsContext);
     const [numberOfTablets, setNumberOfTablets] = useState(true);
-    const [base64String, setBase64String] = useState("");
+    const [imageInput, setImageInput] = useState("");
     const [activeSubmitBtn, setActiveSubmitBtn] = useState(false);
     const [nameInput, setNameInput] = useState("");
     const [producingCountryInput, setProducingCountryInput] = useState("");
@@ -19,16 +19,6 @@ const AddingItemForm = ({category}) => {
     const [priceInput, setPriceInput] = useState("");
     const [volumeInput, setVolumeInput] = useState("");
     const [manufactureInput, setManufactureInput] = useState("");
-    // const nameInputRef = useRef();
-    // const producingCountryInputRef = useRef();
-    // const allGoodsInputRef = useRef();
-    // const activeSubstanceInputRef = useRef();
-    // const dosageInputRef = useRef();
-    // const quantityInputRef = useRef();
-    // const numberOfTabletsInputRef = useRef();
-    // const priceInputRef = useRef();
-    // const volumeInputRef = useRef();
-    // const manufactureInputRef = useRef();
 
     useEffect(() => {
         if (category === "pill") {
@@ -38,7 +28,7 @@ const AddingItemForm = ({category}) => {
         }
 
         let active = nameInput !== ""
-            && base64String
+            && imageInput !== ""
             && producingCountryInput !== ""
             && allGoodsInput !== ""
             && activeSubstanceInput !== ""
@@ -75,35 +65,31 @@ const AddingItemForm = ({category}) => {
         manufactureInput,
         numberOfTabletsInput,
         volumeInput,
-        base64String,
+        imageInput,
     ])
 
-    const imageUploadedHandler = () => {
-        let file = document.querySelector("input[type=file]")["files"][0];
-
+    const imageUploadedHandler = (e) => {
+        let file = e.target.files[0];
         let reader = new FileReader();
-
-        reader.onload = () => {
-            setBase64String(reader.result.replace("data:", "").replace(/^.+,/, ""));
-        }
-
         reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setImageInput(reader.result);
+        }
     }
 
-    const submitNewItemHandler = (event) => {
+    const submitNewItemHandler = async (event) => {
         event.preventDefault();
-
 
         let body = {
             activeSubstances: activeSubstanceInput,
             allGoods: allGoodsInput,
             dosage: dosageInput,
-            file: base64String,
             manufacturer: manufactureInput,
             name: nameInput,
-            price: priceInput,
+            file: imageInput,
+            price: Number(priceInput),
             producingCountry: producingCountryInput,
-            quantity: quantityInput,
+            quantity: Number(quantityInput),
             releaseForm: category.toUpperCase(),
             termsOfSale: "BY_PRESCRIPTION",
         }
@@ -116,35 +102,33 @@ const AddingItemForm = ({category}) => {
         } else if (category === "gel") {
             body = {
                 ...body,
-                weight: volumeInput,
+                weight: Number(volumeInput),
             }
         } else {
             body = {
                 ...body,
-                volume: volumeInput,
+                volume: Number(volumeInput),
             }
         }
-
-        console.log(body);
 
         medicineCtx.fetchingNewCategoryItem(category, body);
         setActiveSubmitBtn(true);
 
-        // setNameInput("");
-        // setProducingCountryInput("");
-        // setAllGoodsInput("");
-        // setActiveSubstanceInput("");
-        // setDosageInput("");
-        // setPriceInput("");
-        // setQuantityInput("");
-        // setManufactureInput("");
-        // setNumberOfTabletsInput("");
-        // setVolumeInput("");
-        // setBase64String("");
+        setNameInput("");
+        setProducingCountryInput("");
+        setAllGoodsInput("");
+        setActiveSubstanceInput("");
+        setDosageInput("");
+        setPriceInput("");
+        setQuantityInput("");
+        setManufactureInput("");
+        setNumberOfTabletsInput("");
+        setVolumeInput("");
+        setImageInput("");
     }
 
     return (
-           <form onSubmit={submitNewItemHandler}>
+           <form onSubmit={submitNewItemHandler} encType="multipart/form-data" id="myForm">
                <div className="input-box">
                    <label>Name:</label>
                    <input
@@ -235,7 +219,9 @@ const AddingItemForm = ({category}) => {
                <div className="input-box">
                    <label style={{ display: "inline", marginRight: "5px", }}>Image:</label>
                    <input
+                       id="imageUploader"
                        type="file"
+                       name="image"
                        onChange={imageUploadedHandler}
                    />
                </div>
