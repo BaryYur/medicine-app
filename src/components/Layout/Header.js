@@ -54,7 +54,7 @@ const Header = () => {
                 <div className="logo-box">
                     <Link to="/home">
                         <MedicalServicesIcon fontSize="large" style={{ color: "#50C878" }} />
-                        <span>Medical Shop</span>
+                        <span>Medical Portal</span>
                     </Link>
                 </div>
                 <div>

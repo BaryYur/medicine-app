@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 
+import Swal from "sweetalert2";
+
 const MedicineItemsContext = React.createContext({
     addToCart: (id, category) => {},
     deleteFromCart: (id) => {},
+    fetchingCategoryData: (category) => {},
     fetchingSearchingItems: (word) => {},
     fetchingSearchingFiltering: (category, name) => {},
     fetchingCategoryFiltering: (category, name) => {},
     fetchingNewCategoryItem: (category, body) => {},
+    deleteMedicineItemFromServer: (category, id) => {},
     effectData: () => {},
 });
 
@@ -212,34 +216,66 @@ export const MedicineItemsContextProvider = ({ children }) => {
         }
     }
 
-    const fetchingNewCategoryItem = (category, body, formData) => {
+    const fetchingNewCategoryItem = (category, body) => {
         setLoading(true);
 
         fetch(`https://api-apteka.herokuapp.com/${category}`, {
             method: "POST",
-            body: formData,
+            body: JSON.stringify(body),
             headers: {
-                "Content-Type": "multipart/form-data",
                 Authorization: localStorage.getItem("token"),
+                "Content-Type": "application/json",
             },
         })
             .then((res) => {
-                // if (res.ok) {
-                //     return res.json();
-                // } else {
-                //     return res.json().then((data) => {
-                //         let errorMessage = "Adding failed!";
-                //
-                //         throw new Error(errorMessage);
-                //     });
-                // }
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return res.json().then((data) => {
+                        let errorMessage = "Adding failed!";
+
+                        throw new Error(errorMessage);
+                    });
+                }
 
                 setLoading(false);
-                alert("You successful add new item!");
+                Swal.fire({
+                    title: "Great",
+                    text: "You successful add new medicine item",
+                    icon: "success",
+                    width: 460,
+                    height: 400,
+                })
             })
             .catch(error => {
-                alert("Something went wrong! ", error);
                 setLoading(false);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    width: 460,
+                    height: 400,
+                })
+            })
+    }
+
+    const deleteMedicineItemFromServer = async (category, id) => {
+        await fetch(`https://api-apteka.herokuapp.com/${category}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: localStorage.getItem("token")
+            },
+        })
+            .catch(error => {
+                setLoading(false);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    width: 460,
+                    height: 400,
+                })
             })
     }
 
@@ -294,10 +330,12 @@ export const MedicineItemsContextProvider = ({ children }) => {
         searchingItems: searchingItems,
         addToCart: addToCartHandler,
         deleteFromCart: deleteItemFromCartHandler,
+        fetchingCategoryData: fetchingCategoryData,
         fetchingSearchingItems: fetchingSearchingItems,
         fetchingSearchingFiltering: fetchingSearchingFiltering,
         fetchingCategoryFiltering: fetchingCategoryFiltering,
         fetchingNewCategoryItem: fetchingNewCategoryItem,
+        deleteMedicineItemFromServer: deleteMedicineItemFromServer,
         loading: loading,
         filteringLoading: filteringLoading,
         effectData: effectData,

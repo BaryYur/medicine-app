@@ -48,7 +48,7 @@ const CategoriesMenu = () => {
                 <Link onClick={handleClose} to="/tincture">
                     <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Tincture</MenuItem>
                 </Link>
-                <Link onClick={handleClose} to="/solution">
+                <Link onClick={handleClose} to="/mixture">
                     <MenuItem style={{ color: "#464646", display: "block", width: "120px", }}>Solution</MenuItem>
                 </Link>
                 <Link onClick={handleClose} to="/gel">

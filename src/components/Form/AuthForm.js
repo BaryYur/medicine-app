@@ -1,11 +1,13 @@
 import React, { useContext, useRef, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import AuthContext from "../../context/auth-context";
 import MedicineItemsContext from "../../context/medicine-items-context";
 
+import Swal from "sweetalert2";
 import { Button } from "@mui/material";
 import "./AuthForm.css";
-import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
     const authCtx = useContext(AuthContext);
@@ -90,7 +92,13 @@ const AuthForm = () => {
             })
             .catch((err) => {
                 setIsLoading(false);
-                alert(err.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Incorrect email or password",
+                    width: 460,
+                    height: 400,
+                })
             });
     }
 

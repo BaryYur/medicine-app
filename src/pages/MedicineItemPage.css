@@ -33,8 +33,15 @@
 
 .medicine-item-btns-container {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+    /*justify-content: space-between;*/
+    /*flex-direction: column;*/
+    align-self: flex-end;
+}
+
+.medicine-item-btns-container button:last-child {
+    background-color: indianred;
+    color: white;
+    margin-left: 10px;
 }
 
 .medicine-item-btns-container .adding-to-cart-btn {

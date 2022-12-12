@@ -77,16 +77,16 @@ const AddingItemForm = ({category}) => {
         }
     }
 
-    const submitNewItemHandler = async (event) => {
+    const submitNewItemHandler = (event) => {
         event.preventDefault();
 
         let body = {
             activeSubstances: activeSubstanceInput,
             allGoods: allGoodsInput,
-            dosage: dosageInput,
+            dosage: dosageInput.toString(),
             manufacturer: manufactureInput,
             name: nameInput,
-            file: imageInput,
+            file: imageInput.replace("data:image/png;base64,",""),
             price: Number(priceInput),
             producingCountry: producingCountryInput,
             quantity: Number(quantityInput),
@@ -97,7 +97,7 @@ const AddingItemForm = ({category}) => {
         if (category === "pill") {
             body = {
                 ...body,
-                numberOfTablets: numberOfTabletsInput,
+                numberOfTablets: Number(numberOfTabletsInput),
             }
         } else if (category === "gel") {
             body = {
@@ -125,10 +125,11 @@ const AddingItemForm = ({category}) => {
         setNumberOfTabletsInput("");
         setVolumeInput("");
         setImageInput("");
+        document.getElementById("img").value = "";
     }
 
     return (
-           <form onSubmit={submitNewItemHandler} encType="multipart/form-data" id="myForm">
+           <form onSubmit={submitNewItemHandler}>
                <div className="input-box">
                    <label>Name:</label>
                    <input
@@ -172,9 +173,14 @@ const AddingItemForm = ({category}) => {
                <div className="inputs-with-numbers">
                    <div className="input-box">
                        <label>Dosage:</label>
+                       {/*<input*/}
+                       {/*    type="number"*/}
+                       {/*    min="0"*/}
+                       {/*    value={dosageInput}*/}
+                       {/*    onChange={(e) => setDosageInput(e.target.value)}*/}
+                       {/*/>*/}
                        <input
-                           type="number"
-                           min="0"
+                           type="text"
                            value={dosageInput}
                            onChange={(e) => setDosageInput(e.target.value)}
                        />
@@ -219,7 +225,7 @@ const AddingItemForm = ({category}) => {
                <div className="input-box">
                    <label style={{ display: "inline", marginRight: "5px", }}>Image:</label>
                    <input
-                       id="imageUploader"
+                       id="img"
                        type="file"
                        name="image"
                        onChange={imageUploadedHandler}
@@ -228,7 +234,7 @@ const AddingItemForm = ({category}) => {
                {!medicineCtx.loading &&
                    <button
                        type="submit"
-                       disabled={activeSubmitBtn}
+                       disabled={false}
                        variant="contained"
                     >Add new one</button>
                }

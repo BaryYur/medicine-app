@@ -34,7 +34,8 @@ const SearchingForm = () => {
 
         let searchingInfo = searchingInput;
         localStorage.setItem("search", JSON.stringify(searchingInfo));
-        medicineCtx.fetchingSearchingItems(searchingInput);
+        let category = JSON.parse(localStorage.getItem("filteringSearching"));
+        medicineCtx.fetchingSearchingFiltering(category, searchingInput);
 
         navigate(`/search/?text=${searchingInput.toLowerCase()}`);
     }

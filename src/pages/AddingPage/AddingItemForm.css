@@ -50,9 +50,10 @@
     border: none;
 }
 
-/*.adding-form-container form .input-box input[type="file"] #file-upload-button {*/
-/*    background-color: red;*/
-/*}*/
+.adding-form-container form .input-box input[type="file"] {
+    background-color: whitesmoke;
+    border: none;
+}
 
 .adding-form-container form button,
 .adding-form-container .adding-loading {
