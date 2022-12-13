@@ -64,7 +64,6 @@ const MedicineItemPage = () => {
 
     useEffect(() => {
         fetchingCategoryItems(categoryLocation, params.id);
-        console.log(error)
     }, [params])
 
     return (
