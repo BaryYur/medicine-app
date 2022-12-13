@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import MedicineItemsContext from "../context/medicine-items-context";
 
 import { Button, Card, CircularProgress } from "@mui/material";
@@ -12,11 +12,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const MedicineItemPage = () => {
     const params = useParams();
     const location = useLocation();
-    const navigate = useNavigate();
     let categoryLocation = location.pathname.split("/")[1];
     const medicineCtx = useContext(MedicineItemsContext);
     const [chosenMedicineItem, setChosenMedicineItem] = useState({});
     const [chosenItemLoading, setChosenItemLoading] = useState(false);
+    const [error, setError] = useState("");
     const [activeAddingBtn, setActiveAddingBtn] = useState(false);
 
     const fetchingCategoryItems = (category, id) =>  {
@@ -31,7 +31,12 @@ const MedicineItemPage = () => {
             .then(response => response.json())
             .then(data => {
                 setChosenItemLoading(false);
+                if (data.message) setError(data.message);
                 setChosenMedicineItem(data);
+            })
+            .catch(error => {
+                setError(error);
+                setChosenItemLoading(false);
             })
     }
 
@@ -47,9 +52,7 @@ const MedicineItemPage = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 medicineCtx.deleteMedicineItemFromServer(category, id);
-                medicineCtx.fetchingCategoryData(category);
-                navigate("/");
-                setChosenMedicineItem({});
+                setError("error");
                 Swal.fire(
                     "Deleted!",
                     "Medicine item has been deleted.",
@@ -61,14 +64,15 @@ const MedicineItemPage = () => {
 
     useEffect(() => {
         fetchingCategoryItems(categoryLocation, params.id);
+        console.log(error)
     }, [params])
 
     return (
         <div className="main-wrapper">
-            {!chosenItemLoading && !chosenMedicineItem.date &&
+            {!chosenItemLoading && error === "" &&
                 <Card className="medicine-item-page-container">
                     <div className="medicine-item-page__main-info">
-                        <img src={"data:image/png;base64," + chosenMedicineItem.file} />
+                        <img src={chosenMedicineItem.file} />
                         <div>
                             <p>Name: <span>{chosenMedicineItem.name}</span></p>
                             <p>All goods: <span>{chosenMedicineItem.allGoods}</span></p>
@@ -99,8 +103,8 @@ const MedicineItemPage = () => {
                         </Button>
                     </div>
                 </Card>}
-            {chosenItemLoading && chosenMedicineItem.date &&<CircularProgress style={{ color: "#50C878", display: "block", margin: "60px auto", }} />}
-            {chosenMedicineItem.date && <p className="no-items-paragraph" style={{ fontSize: "20px" }}>Item not found</p>}
+            {chosenItemLoading && <CircularProgress style={{ color: "#50C878", display: "block", margin: "60px auto", }} />}
+            {error !== "" && <p className="no-items-paragraph" style={{ fontSize: "20px" }}>Item not found</p>}
         </div>
     );
 }

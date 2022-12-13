@@ -229,6 +229,9 @@ export const MedicineItemsContextProvider = ({ children }) => {
         })
             .then((res) => {
                 if (res.ok) {
+                    setLoading(false);
+                    fetchingCategoryData(category);
+                    fetchingCategoryFilteringNames(category);
                     return res.json();
                 } else {
                     return res.json().then((data) => {
@@ -238,7 +241,6 @@ export const MedicineItemsContextProvider = ({ children }) => {
                     });
                 }
 
-                setLoading(false);
                 Swal.fire({
                     title: "Great",
                     text: "You successful add new medicine item",
@@ -277,6 +279,9 @@ export const MedicineItemsContextProvider = ({ children }) => {
                     height: 400,
                 })
             })
+
+        fetchingCategoryData(category);
+        fetchingCategoryFilteringNames(category);
     }
 
     const filteringCategoryItems = JSON.parse(localStorage.getItem("filteringCategory"));

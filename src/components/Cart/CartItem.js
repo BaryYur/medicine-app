@@ -47,7 +47,7 @@ const CartItem = ({ name, id, price, category, quantity, img, producingCountry})
             >
                 <div className="cart-item-box">
                     <Link onClick={authCtx.closingCartHandler} to={`/${category}/${id}`} onClick={authCtx.closingCartHandler}>
-                        <img src={"data:image/png;base64," + img} alt={name} />
+                        <img src={img} alt={name} />
                     </Link>
                     <div>
                         <Link onClick={authCtx.closingCartHandler} to={`/${category}/${id}`}>{name}</Link>

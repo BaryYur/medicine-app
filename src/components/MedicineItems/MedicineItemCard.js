@@ -36,7 +36,7 @@ const MedicineItemCard = ({ title, img, price, id, link, category }) => {
         >
             <Link to={link}>
                 <div className="medicine-card__head">
-                    <img src={"data:image/png;base64," + img} alt={title} />
+                    <img src={img} alt={title} />
                     <p>{title}</p>
                 </div>
             </Link>

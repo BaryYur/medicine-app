@@ -86,7 +86,7 @@ const AddingItemForm = ({category}) => {
             dosage: dosageInput.toString(),
             manufacturer: manufactureInput,
             name: nameInput,
-            file: imageInput.replace("data:image/png;base64,",""),
+            file: imageInput,
             price: Number(priceInput),
             producingCountry: producingCountryInput,
             quantity: Number(quantityInput),
@@ -234,7 +234,7 @@ const AddingItemForm = ({category}) => {
                {!medicineCtx.loading &&
                    <button
                        type="submit"
-                       disabled={false}
+                       disabled={activeSubmitBtn}
                        variant="contained"
                     >Add new one</button>
                }
