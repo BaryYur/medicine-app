@@ -46,8 +46,8 @@ const MedicineItemPage = () => {
             text: "You really wont to delete this item!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "royalblue",
+            cancelButtonColor: "indianred",
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
